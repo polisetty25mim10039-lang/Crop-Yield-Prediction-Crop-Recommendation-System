@@ -1,41 +1,22 @@
 # Crop Yield Prediction & Recommendation System
 
-A command-line AI/ML system that combines two capabilities, each trained
-from its own real-world public dataset:
-
-1. **Crop Recommendation** — given soil (N, P, K, pH) and weather
-   (temperature, humidity, rainfall) conditions, recommends the top-N most
-   suitable crops with suitability scores.
-2. **Yield Prediction** — given a state, season, crop, and cultivated area,
-   predicts expected yield (tons/hectare) and total production.
-
-Built as a course project for *Fundamentals of AI and ML*, demonstrating a
-full ML pipeline: data ingestion, preprocessing/feature engineering, model
-training & evaluation, and CLI-based inference.
-
----
+Command Line AI/ML system consisting of two independent functionalities, each of them is being trained on its own dataset:
+Crop recommendation — recommends the top-N best-fitted crops depending on the soil (Nitrogen, Phosphorus, Potassium, pH) and weather (temperature, humidity, rainfall) characteristics along with the corresponding fitness score;
+Yield prediction — predicts the yield amount (tons/hectare) and total amount of product depending on the state, season, crop, and cultivation area.
+This system was implemented as a part of the project on Fundamentals of AI and ML course, illustrating the whole process of developing a Machine Learning solution from data ingestion to preprocessing/feature engineering, training and evaluating a model and then getting an output through command line interface.
 
 ## Features
-
-- Two independently trained ML models, each on its own real dataset:
-  - `RandomForestClassifier` (or `GradientBoostingClassifier`) for crop
-    recommendation
-  - `RandomForestRegressor` (or `GradientBoostingRegressor`) for yield
-    prediction — algorithm is switchable via `config.yaml` for easy
-    comparison
-- Two original engineered features:
-  - **`npk_balance_score`** — how balanced a sample's N/P/K levels are
-    relative to each other (0-1), independent of absolute nutrient level
-  - **`area_percentile`** — a record's cultivated area expressed as a
-    percentile within its own crop's area distribution, so the model can
-    tell "large for this crop" apart from "large in absolute terms"
-- Input validation with clear error messages (range checks + allowed
-  categorical values)
-- Centralized logging to both console and `logs/app.log`
-- Config-driven paths and hyperparameters (`config.yaml`) — no hardcoded
-  values in source code
-- Fully CLI-executable — no GUI/browser required
-- Unit tests covering preprocessing, model training, and input validation
+Two separate ML models that are independently trained using their own real datasets:
+RandomForestClassifier (or GradientBoostingClassifier) for crop recommendation;
+RandomForestRegressor (or GradientBoostingRegressor) for yield prediction — can be changed by setting the algorithm key in config.yaml file;
+Two engineered features:
+npk_balance_score — how well-balanced the ratio between nitrogen-phosphorus-potassium content of a particular example is (value range is [0; 1] and does not depend on the actual numbers);
+area_percentile — is a percentile of the cultivation area of the example relative to all the areas of this particular crop;
+Parameter validation with informative error messages;
+Logging into console and logs/app.log file;
+Configuration file-driven file paths and parameters (config.yaml) without any hard-coded values in the code;
+CLI-only;
+Unit tests for feature engineering and training stages and parameter validation
 
 ---
 
