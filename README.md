@@ -137,59 +137,48 @@ Run the unit test suite:
 ```bash
 pytest tests/ -v
 ```
-
-Tests cover:
-- Missing value handling, outlier clipping, feature engineering, and
-  categorical encoding for both pipelines (`tests/test_preprocess.py`)
-- Model training (both RandomForest and GradientBoosting options) and
-  save/load round-trips (`tests/test_model.py`)
-- Input validation logic used by the CLI (`tests/test_predict.py`)
+THE Result for the test is :
+<img width="1151" height="535" alt="image" src="https://github.com/user-attachments/assets/17cf2fe7-b553-4037-a65a-dd2d8991fce9" />
 
 ---
 
 ## Dataset Note
 
-This project uses **two independent, real, publicly available datasets**
-(see `data/DATASET_SETUP.md` for download links), one per task, because no
-single public dataset covers both soil-chemistry-driven crop suitability
-and area/production yield records together:
+The project requires **two independent, real, publicly available datasets**
+(check `data/DATASET_SETUP.md` for dataset download instructions), one for
+each task, since there are no publicly available datasets that cover both
+soil-chemistry based crop suitability and area/production yields at the same
+time:
 
-1. **Crop Recommendation Dataset** (Kaggle, atharvaingle) — 2,200 rows of
+1. **Crop Recommendation Dataset** (Kaggle, atharvaingle) – 2,200 rows of
    N, P, K, temperature, humidity, pH, rainfall, and crop label
-2. **Crop Production in India** (Kaggle, abhinand05) — state/season/crop/
-   area/production records used to derive yield per hectare
+2. **Crop Production in India** (Kaggle, abhinand05) – state/season/crop/
+   area/production records for calculating the yield per hectare
 
-Synthetic fallback generators matching each real schema are included so the
-pipeline is runnable/demoable without a network connection — **replace
-these with the real files before final submission** (see the note in
-`data/DATASET_SETUP.md`).
+Two synthetic data generator scripts mimicking the schemas of the two
+datasets are provided so that the pipeline can be run/demonstrated without
+network access – **they should be replaced with the real datasets before
+submission** (check the comment in `data/DATASET_SETUP.md`).
 
 ---
 
 ## Non-Functional Requirements Addressed
 
-- **Performance** — inference completes in well under a second once models
-  are loaded (RandomForest/GradientBoosting inference has no retraining at
-  prediction time).
-- **Reliability** — every CLI input is validated (type, range, and allowed
-  categories) before it reaches the model.
-- **Maintainability** — modular `src/` layout, single `config.yaml` for
-  paths/hyperparameters, model algorithm swappable without code changes.
-- **Logging/Monitoring** — every prediction request and result is logged
-  with a timestamp to `logs/app.log`.
-- **Scalability** — preprocessing and training operate on the full
-  DataFrame in vectorized pandas/sklearn operations, not per-row Python
-  loops, so they scale to much larger datasets.
-- **Error Handling** — missing model artifacts, malformed config, and bad
-  CLI input all fail with clear, actionable messages instead of stack
-  traces.
-
----
-
-## Future Enhancements
-
-- Add a lightweight REST API wrapper around the same `src/` modules
-- Hyperparameter tuning via cross-validation (GridSearchCV)
-- Add SHAP-based feature importance explanations to predictions
-- Join the two datasets on crop name to let yield prediction also factor
-  in soil/weather conditions where available
+- **Performance** — inference takes less than a second once the models are
+  loaded (RandomForest/GradientBoosting inference does not involve any
+  training).
+- **Reliability** — all CLI arguments are validated (type, range, and valid
+  categories) before they are passed to the model.
+- **Maintainability** — modular `src/` structure, only one
+  `config.yaml` file containing paths and hyperparameters, easy swapping of
+  the model algorithm without changing the code.
+- **Logging/Monitoring** — every prediction request and its result are
+  logged with a timestamp into `logs/app.log`.
+- **Scalability** — both preprocessing and training use vectorized pandas
+  and sklearn operations on the entire DataFrame, rather than iterating
+  through it row by row in Python, thus allowing scaling to larger
+  datasets.
+- **Error Handling** — missing model artifacts, misconfigured config and
+  invalid CLI arguments all fail with descriptive error messages, not
+  tracebacks.
+  ---
