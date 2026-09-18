@@ -101,15 +101,8 @@ python data/generate_production_data.py
 python train.py
 ```
 
-This runs the full pipeline for both tasks: preprocessing → training →
-evaluation → saving model artifacts to `models/`. You should see a summary
-like:
-
-```
-=== Training Summary ===
-Recommend model (random_forest_classifier) -> Accuracy: 0.95, F1: 0.95
-Yield model (random_forest_regressor)      -> RMSE: 3.1, MAE: 1.8, R2: 0.97
-```
+it shows like this 
+<img width="830" height="66" alt="image" src="https://github.com/user-attachments/assets/df0b6b3f-006b-4060-a90f-c88d93c5be71" />
 
 ---
 
