@@ -143,6 +143,28 @@ THE Result for the test is :
 <img width="1151" height="535" alt="image" src="https://github.com/user-attachments/assets/17cf2fe7-b553-4037-a65a-dd2d8991fce9" />
 
 ---
+### Argument reference
+
+**`recommend-crop`**
+
+| Flag | Description |
+|---|---|
+| `--n`, `--p`, `--k` | Nitrogen / Phosphorus / Potassium levels |
+| `--temperature` | Temperature in °C |
+| `--humidity` | Humidity in % |
+| `--ph` | Soil pH |
+| `--rainfall` | Rainfall in mm |
+| `--top-n` | Number of crops to recommend (default 3) |
+
+**`predict-yield`**
+
+| Flag | Description |
+|---|---|
+| `--state` | State name (must match a state seen during training) |
+| `--season` | Season (e.g. Kharif, Rabi — must match training data) |
+| `--crop` | Crop name (must match training data) |
+| `--area` | Cultivated area in hectares |
+| `--year` | Crop year (optional, default 2020) |
 
 ## Dataset Note
 
