@@ -94,7 +94,7 @@ git clone https://github.com/polisetty25mim10039-lang/Crop-Yield-Prediction-Crop
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+venv\Scripts\Activate.ps1        # powershell: .\venv\Scripts\Activate.ps1
 ```
 
 ### 3. Install dependencies
@@ -110,8 +110,8 @@ Kaggle datasets this project uses. Quick start with fallback data (same
 schema, synthetic values) if you just want to try the pipeline first:
 
 ```bash
-python data/generate_recommendation_data.py   # -> data/raw/crop_recommendation.csv
-python data/generate_production_data.py       # -> data/raw/crop_production.csv
+python data/generate_recommendation_data.py  
+python data/generate_production_data.py       
 ```
 
 ### 5. Train the models
@@ -137,70 +137,24 @@ Yield model (random_forest_regressor)      -> RMSE: 3.1, MAE: 1.8, R2: 0.97
 ### Recommend the best crops for given soil/weather conditions
 
 ```bash
-python main.py recommend-crop \
-  --n 90 --p 42 --k 43 \
-  --temperature 20.9 --humidity 82 --ph 6.5 --rainfall 202.9 \
-  --top-n 3
+python main.py recommend-crop --n 90 --p 42 --k 43 --temperature 20.9 --humidity 82 --ph 6.5 --rainfall 202.9 --top-n 3
 ```
 
 Output:
-```json
-{
-  "recommendations": [
-    {"crop": "rice", "suitability": 0.62},
-    {"crop": "jute", "suitability": 0.31},
-    {"crop": "coconut", "suitability": 0.04}
-  ]
-}
-```
+<img width="320" height="293" alt="image" src="https://github.com/user-attachments/assets/c74eaf5b-fbf7-4513-95e8-a55b9d2cdeed" />
+
 
 ### Predict yield/production for a chosen crop
 
 ```bash
-python main.py predict-yield \
-  --state Punjab --season Kharif --crop Rice --area 2.5
+python main.py predict-yield --state Punjab --season Kharif --crop Rice --area 2.5 
 ```
 
 Output:
-```json
-{
-  "crop": "Rice",
-  "state": "Punjab",
-  "season": "Kharif",
-  "predicted_yield_tons_per_ha": 2.71,
-  "predicted_production_tons": 6.78,
-  "area_ha": 2.5
-}
-```
 
-### Argument reference
+<img width="403" height="154" alt="image" src="https://github.com/user-attachments/assets/95f9e4ed-35cd-4633-91aa-3555fd9a3041" />
 
-**`recommend-crop`**
 
-| Flag | Description |
-|---|---|
-| `--n`, `--p`, `--k` | Nitrogen / Phosphorus / Potassium levels |
-| `--temperature` | Temperature in °C |
-| `--humidity` | Humidity in % |
-| `--ph` | Soil pH |
-| `--rainfall` | Rainfall in mm |
-| `--top-n` | Number of crops to recommend (default 3) |
-
-**`predict-yield`**
-
-| Flag | Description |
-|---|---|
-| `--state` | State name (must match a state seen during training) |
-| `--season` | Season (e.g. Kharif, Rabi — must match training data) |
-| `--crop` | Crop name (must match training data) |
-| `--area` | Cultivated area in hectares |
-| `--year` | Crop year (optional, default 2020) |
-
-Invalid inputs (out-of-range values, unrecognized state/season/crop) return
-a clear error message and a non-zero exit code rather than a silent or
-incorrect prediction.
-
----
 
 ## Testing
 
