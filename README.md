@@ -87,7 +87,7 @@ crop-yield-predictor/
 ### 1. Clone the repository
 
 ```bash
-[git clone https://github.com/polisetty25mim10039-lang/Crop-Yield-Prediction-Crop-Recommendation-System)
+git clone https://github.com/polisetty25mim10039-lang/Crop-Yield-Prediction-Crop-Recommendation-System.git
 ```
 
 ### 2. Create a virtual environment (recommended)
