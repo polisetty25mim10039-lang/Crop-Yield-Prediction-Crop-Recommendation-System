@@ -1,0 +1,10 @@
+2026-09-18 18:54:58 | train | INFO | Starting training pipeline.
+2026-09-18 18:54:58 | train | INFO | Loaded recommendation dataset: 2200 rows.
+2026-09-18 18:54:58 | train | INFO | Loaded production dataset: 8000 rows.
+2026-09-18 18:55:00 | train | INFO | Trained recommendation model (random_forest_classifier) on 1760 samples, 8 features.
+2026-09-18 18:55:00 | train | INFO | Recommendation model evaluation: {'accuracy': 0.9545, 'precision': 0.9558, 'recall': 0.9545, 'f1_score': 0.9543}
+2026-09-18 18:55:12 | train | INFO | Trained yield model (random_forest_regressor) on 6312 samples, 6 features.
+2026-09-18 18:55:12 | train | INFO | Yield model evaluation: {'rmse': 3.2713, 'mae': 1.012, 'r2': 0.9744}
+2026-09-18 18:55:12 | train | INFO | Training pipeline complete.
+2026-09-18 19:00:21 | crop_cli | INFO | recommend-crop request={'N': 90.0, 'P': 42.0, 'K': 43.0, 'temperature': 20.9, 'humidity': 82.0, 'ph': 6.5, 'rainfall': 202.9} result={'recommendations': [{'crop': 'jute', 'suitability': 0.5937}, {'crop': 'rice', 'suitability': 0.3873}, {'crop': 'maize', 'suitability': 0.01}]}
+2026-09-18 19:02:01 | crop_cli | INFO | predict-yield request={'state': 'Punjab', 'season': 'Kharif', 'crop': 'Rice', 'area_ha': 2.5, 'crop_year': 2020} result={'crop': 'Rice', 'state': 'Punjab', 'season': 'Kharif', 'predicted_yield_tons_per_ha': 2.631, 'predicted_production_tons': 6.577, 'area_ha': 2.5}
