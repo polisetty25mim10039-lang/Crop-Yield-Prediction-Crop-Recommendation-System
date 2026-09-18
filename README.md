@@ -37,32 +37,31 @@ Unit tests for feature engineering and training stages and parameter validation
 ```
 crop-yield-predictor/
 ├── data/
-│   ├── DATASET_SETUP.md              # where to get the real datasets
-│   ├── generate_recommendation_data.py  # fallback generator (real schema)
-│   ├── generate_production_data.py      # fallback generator (real schema)
-│   └── raw/                          # place real/fallback CSVs here
+│   ├── DATASET_SETUP.md              
+│   ├── generate_recommendation_data.py  
+│   ├── generate_production_data.py     
+│   └── raw/                          
 ├── src/
-│   ├── data_loader.py       # Module 1a - loads both datasets, validates schema
-│   ├── preprocess.py        # Module 1b - cleaning, feature engineering, encoding
-│   ├── model.py              # Module 2  - model definitions & training (both algos)
-│   ├── evaluate.py           # Module 2  - evaluation metrics
-│   ├── predict.py             # Module 3a - yield prediction inference
-│   ├── recommend.py           # Module 3b - crop recommendation inference
-│   ├── cli.py                 # Module 3c - command-line interface
-│   ├── logger.py              # centralized logging
-│   └── utils.py                # config loading & input validation
-├── tests/                    # unit tests
-├── docs/                      # architecture / workflow / UML diagrams
-├── models/                   # trained model artifacts (generated)
-├── config.yaml               # paths & hyperparameters
-├── train.py                  # end-to-end training entry point
-├── main.py                   # CLI entry point
+│   ├── data_loader.py       
+│   ├── preprocess.py        
+│   ├── model.py              
+│   ├── evaluate.py         
+│   ├── predict.py             
+│   ├── recommend.py           
+│   ├── cli.py                 
+│   ├── logger.py             
+│   └── utils.py                
+├── tests/                    
+├── docs/                      
+├── models/                   
+├── config.yaml               
+├── train.py                  
+├── main.py                   
 ├── requirements.txt
-└── statement.md               # problem statement, scope, target users
-```
+└── statement.md               
 
 ---
-
+some changes may be possible in the structure
 ## Setup & Installation
 
 ### 1. Clone the repository
@@ -86,9 +85,7 @@ pip install -r requirements.txt
 
 ### 4. Get the datasets
 
-See **`data/DATASET_SETUP.md`** for exact download links to the two real
-Kaggle datasets this project uses. Quick start with fallback data (same
-schema, synthetic values) if you just want to try the pipeline first:
+use kaggle to get thedata sets or download them from data folder in my repository
 
 ```bash
 python data/generate_recommendation_data.py  
@@ -101,7 +98,8 @@ python data/generate_production_data.py
 python train.py
 ```
 
-it shows like this 
+output looks like :
+
 <img width="830" height="66" alt="image" src="https://github.com/user-attachments/assets/df0b6b3f-006b-4060-a90f-c88d93c5be71" />
 
 ---
@@ -115,6 +113,7 @@ python main.py recommend-crop --n 90 --p 42 --k 43 --temperature 20.9 --humidity
 ```
 
 Output:
+
 <img width="320" height="293" alt="image" src="https://github.com/user-attachments/assets/c74eaf5b-fbf7-4513-95e8-a55b9d2cdeed" />
 
 
@@ -125,6 +124,7 @@ python main.py predict-yield --state Punjab --season Kharif --crop Rice --area 2
 ```
 
 Output:
+
 
 <img width="403" height="154" alt="image" src="https://github.com/user-attachments/assets/95f9e4ed-35cd-4633-91aa-3555fd9a3041" />
 
@@ -138,13 +138,14 @@ Run the unit test suite:
 pytest tests/ -v
 ```
 THE Result for the test is :
+
 <img width="1151" height="535" alt="image" src="https://github.com/user-attachments/assets/17cf2fe7-b553-4037-a65a-dd2d8991fce9" />
 
 ---
 
 ## Dataset Note
 
-The project requires **two independent, real, publicly available datasets**
+The project requires two independent, real, publicly available datasets
 (check `data/DATASET_SETUP.md` for dataset download instructions), one for
 each task, since there are no publicly available datasets that cover both
 soil-chemistry based crop suitability and area/production yields at the same
@@ -164,21 +165,22 @@ submission** (check the comment in `data/DATASET_SETUP.md`).
 
 ## Non-Functional Requirements Addressed
 
-- **Performance** — inference takes less than a second once the models are
+- Performance — inference takes less than a second once the models are
   loaded (RandomForest/GradientBoosting inference does not involve any
   training).
-- **Reliability** — all CLI arguments are validated (type, range, and valid
+- Reliability — all CLI arguments are validated (type, range, and valid
   categories) before they are passed to the model.
-- **Maintainability** — modular `src/` structure, only one
+- Maintainability — modular `src/` structure, only one
   `config.yaml` file containing paths and hyperparameters, easy swapping of
   the model algorithm without changing the code.
-- **Logging/Monitoring** — every prediction request and its result are
+- Logging/Monitoring — every prediction request and its result are
   logged with a timestamp into `logs/app.log`.
-- **Scalability** — both preprocessing and training use vectorized pandas
+- Scalability — both preprocessing and training use vectorized pandas
   and sklearn operations on the entire DataFrame, rather than iterating
   through it row by row in Python, thus allowing scaling to larger
   datasets.
-- **Error Handling** — missing model artifacts, misconfigured config and
+- Error Handling — missing model artifacts, misconfigured config and
   invalid CLI arguments all fail with descriptive error messages, not
-  tracebacks.
-  ---
+  tracebacks..
+
+   ---
