@@ -1,0 +1,33 @@
+# Central configuration for the Crop Yield Prediction & Recommendation System.
+# Editing this file changes pipeline behaviour without touching source code.
+
+paths:
+  recommendation_data: "data/raw/crop_recommendation.csv"
+  production_data: "data/raw/crop_production.csv"
+  recommend_processed: "data/processed/recommendation_clean.csv"
+  production_processed: "data/processed/production_clean.csv"
+  yield_model: "models/yield_model.pkl"
+  recommend_model: "models/recommend_model.pkl"
+  yield_encoders: "models/yield_encoders.pkl"
+  recommend_encoders: "models/recommend_encoders.pkl"
+  log_file: "logs/app.log"
+
+data:
+  test_size: 0.2
+  random_state: 42
+
+# Swap "type" to compare algorithms, e.g. "gradient_boosting_regressor" /
+# "gradient_boosting_classifier". Both families are implemented in
+# src/model.py behind the same training/evaluation interface.
+yield_model:
+  type: "random_forest_regressor"
+  n_estimators: 300
+  max_depth: 14
+
+recommend_model:
+  type: "random_forest_classifier"
+  n_estimators: 200
+  max_depth: 12
+
+logging:
+  level: "INFO"
