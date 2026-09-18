@@ -60,8 +60,6 @@ crop-yield-predictor/
 ├── requirements.txt
 └── statement.md               
 some changes may be possible in the structure
-
-
 ---
 
 
@@ -73,7 +71,6 @@ some changes may be possible in the structure
 ```bash
 git clone https://github.com/polisetty25mim10039-lang/Crop-Yield-Prediction-Crop-Recommendation-System.git
 ```
-
 ### 2. Create a virtual environment (recommended)
 
 ```bash
