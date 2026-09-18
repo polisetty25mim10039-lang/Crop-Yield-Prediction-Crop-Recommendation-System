@@ -3,7 +3,6 @@
 ---
 ## Name:Polisetty Harsha Sivarama Kumar Guptha
 ## Registration Number:25MIM10039
-## Program:Integrated Mtech AI
 ---
 ## Introduction
 Command Line AI/ML system consisting of two independent functionalities, each of them is being trained on its own dataset:
