@@ -1,5 +1,11 @@
 # Crop Yield Prediction & Recommendation System
 
+---
+## Name:Polisetty Harsha Sivarama Kumar Guptha
+## Registration Number:25MIM10039
+## Program:Integrated Mtech AI
+---
+## Introduction
 Command Line AI/ML system consisting of two independent functionalities, each of them is being trained on its own dataset:
 Crop recommendation — recommends the top-N best-fitted crops depending on the soil (Nitrogen, Phosphorus, Potassium, pH) and weather (temperature, humidity, rainfall) characteristics along with the corresponding fitness score;
 Yield prediction — predicts the yield amount (tons/hectare) and total amount of product depending on the state, season, crop, and cultivation area.
